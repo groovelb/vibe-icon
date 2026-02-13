@@ -253,17 +253,16 @@ export default function IconSetPage() {
         maxWidth="md"
         fullWidth
         slotProps={{
-          backdrop: { sx: { backdropFilter: 'blur(20px)', bgcolor: 'rgba(0,0,0,0.85)' } },
+          backdrop: { sx: { bgcolor: 'rgba(0,0,0,0.4)' } },
         }}
         PaperProps={{
           sx: {
-            bgcolor: 'rgba(8, 9, 10, 0.95)',
-            backdropFilter: 'blur(60px)',
-            WebkitBackdropFilter: 'blur(60px)',
-            border: '1px solid rgba(255,255,255,0.06)',
+            background: 'rgba(255,255,255,0.06) !important',
+            backdropFilter: 'blur(40px) saturate(1.5)',
+            WebkitBackdropFilter: 'blur(40px) saturate(1.5)',
+            border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: 4,
-            backgroundImage: 'none',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
           },
         }}
       >
