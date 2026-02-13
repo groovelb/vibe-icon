@@ -43,9 +43,9 @@ const IconWrapper = styled(Box)(({ theme }) => ({
  *   <AITutorIcon />
  * </IconCard>
  */
-export default function IconCard({ title, description, children }) {
+export default function IconCard({ title, description, children, onClick }) {
   return (
-    <CardContainer>
+    <CardContainer onClick={onClick}>
       <IconWrapper>
         {children}
       </IconWrapper>
@@ -63,4 +63,5 @@ IconCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };

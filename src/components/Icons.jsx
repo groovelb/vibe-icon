@@ -221,47 +221,158 @@ export const MasterComponentIcon = (props) => (
 
 export const FigmaToolIcon = (props) => (
   <svg {...defaultProps} {...props}>
+    <defs>
+      <path id="f-left-round" d="M50 0 L100 0 L100 100 L50 100 A 50 50 0 0 1 50 0 Z" />
+      <path id="f-right-round" d="M0 0 L50 0 A 50 50 0 0 1 50 100 L0 100 Z" />
+      <path id="f-circle" d="M100 50 A 50 50 0 1 1 0 50 A 50 50 0 1 1 100 50 Z" />
+      <path id="f-teardrop" d="M50 0 L100 0 L100 50 A 50 50 0 1 1 50 0 Z" />
+    </defs>
+    <g transform="translate(50, 40) scale(0.14)">
+      {/* Bottom face */}
+      <g transform="translate(0, 40) matrix(0.866, 0.5, -0.866, 0.5, 0, 0)">
+        <use href="#f-left-round" x="-100" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-right-round" x="0" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-left-round" x="-100" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-circle" x="0" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-teardrop" x="-100" y="50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+      </g>
+      {/* Vertical edges connecting top and bottom faces */}
+      <path d="M 86.6 -100 L 52 -80 M 129.9 -75 L 95.3 -55 M 0 -50 L -34.6 -30 M 43.3 -25 L 8.7 -5 M -86.6 0 L -121.2 20 M -43.3 25 L -77.9 45 M -86.6 50 L -121.2 70" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+      {/* Top face */}
+      <g transform="matrix(0.866, 0.5, -0.866, 0.5, 0, 0)">
+        <use href="#f-left-round" x="-100" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-right-round" x="0" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-left-round" x="-100" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-circle" x="0" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-teardrop" x="-100" y="50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+      </g>
+    </g>
+    <path className="line-glow" d="M 62 26 A 8.6 5 0 0 0 50 33 A 8.6 5 0 0 0 38 40" />
+  </svg>
+);
+
+export const GitBranchIcon = (props) => (
+  <svg {...defaultProps} {...props}>
     <g className="animate-float">
-      {/* Depth walls */}
-      <path d="M80 42 L70 49 L60 56 L46 49 L36 56 L22 49 L22 54 L36 61 L46 54 L60 61 L70 54 L80 47 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-      <path d="M70 49 V 54 M60 56 V 61 M46 49 V 54 M36 56 V 61" stroke="#3E3E44" strokeWidth="0.5" />
-      {/* Top face background */}
-      <path d="M52 28 L66 35 L80 42 L70 49 L60 56 L46 49 L36 56 L22 49 L32 42 L42 35 Z" fill="#08090A" />
-      {/* Internal dividing lines */}
-      <path d="M42 35 L56 42 L70 49" stroke="#62666D" strokeWidth="0.5" fill="none" />
-      <path d="M66 35 L56 42 L46 49 L32 42" stroke="#62666D" strokeWidth="0.5" fill="none" />
-      {/* Outer contour */}
-      <path d="M52 28 L66 35 L80 42 L70 49 L60 56 L46 49 L36 56 L22 49 L32 42 L42 35 Z" stroke="#D0D6E0" strokeWidth="0.5" fill="none" />
-      {/* Glow */}
-      <path className="line-glow" d="M52 28 L66 35 L80 42 L70 49 L60 56 L46 49 L36 56 L22 49 L32 42 L42 35 Z" />
+      <path d="M50 20 V 50" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M50 50 L35 65" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M50 50 L65 65" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M35 65 V 80" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M65 65 V 80" stroke="#62666D" strokeWidth="0.5" />
+      <circle cx="50" cy="20" r="3" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <circle cx="35" cy="80" r="3" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <circle cx="65" cy="80" r="3" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <circle cx="50" cy="50" r="2" fill="#D0D6E0" />
+      <path className="line-glow" d="M50 20 V 50 L65 65 V 80" />
     </g>
   </svg>
 );
 
-export const FigmaIdentityIcon = (props) => (
+export const ApiEndpointIcon = (props) => (
   <svg {...defaultProps} {...props}>
     <g className="animate-float">
-      <g transform="translate(0, 4)" opacity="0.5">
-        <path d="M42 30 L50 35 L50 39 L42 34 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M34 35 A 8 5 0 0 1 34 25 V 29 A 8 5 0 0 0 34 39 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M50 35 L58 30 L58 34 L50 39 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M66 35 A 8 5 0 0 0 66 25 V 29 A 8 5 0 0 1 66 39 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M42 50 L50 55 L50 59 L42 54 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M34 55 A 8 5 0 0 1 34 45 V 49 A 8 5 0 0 0 34 59 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M50 55 L58 50 L58 54 L50 59 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M66 55 A 8 5 0 0 0 66 45 V 49 A 8 5 0 0 1 66 59 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M42 70 L50 75 L50 79 L42 74 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-        <path d="M34 75 A 8 5 0 0 1 34 65 V 69 A 8 5 0 0 0 34 79 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
-      </g>
-      <path d="M42 30 L50 35 L42 40 C 37 40 34 38 34 35 C 34 32 37 30 42 30 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
-      <path d="M58 30 C 63 30 66 32 66 35 C 66 38 63 40 58 40 L50 35 L58 30 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
-      <path d="M42 50 L50 55 L42 60 C 37 60 34 58 34 55 C 34 52 37 50 42 50 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
-      <ellipse cx="58" cy="55" rx="8" ry="5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
-      <path d="M50 75 L42 80 C 37 80 34 78 34 75 C 34 72 37 70 42 70 L50 75 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
-      <path d="M50 35 V 39" stroke="#3E3E44" strokeWidth="0.5" />
-      <path d="M50 55 V 59" stroke="#3E3E44" strokeWidth="0.5" />
-      <path d="M50 75 V 79" stroke="#3E3E44" strokeWidth="0.5" />
-      <path className="line-glow" d="M34 35 C 34 32 37 30 42 30 L50 35 L58 30 C 63 30 66 32 66 35 M34 55 C 34 52 37 50 42 50 L50 55 L58 50 M34 75 C 34 72 37 70 42 70 L50 75" />
+      <path d="M20 50 L40 40 L40 60 Z" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M80 50 L60 40 L60 60 Z" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M40 50 L60 50" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M40 45 L60 45" stroke="#3E3E44" strokeWidth="0.5" strokeDasharray="2 2" />
+      <path d="M40 55 L60 55" stroke="#3E3E44" strokeWidth="0.5" strokeDasharray="2 2" />
+      <circle cx="30" cy="50" r="5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <circle cx="70" cy="50" r="5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M28 48 L32 50 L28 52" stroke="#D0D6E0" strokeWidth="0.5" fill="none" />
+      <path d="M72 48 L68 50 L72 52" stroke="#D0D6E0" strokeWidth="0.5" fill="none" />
+      <path className="line-glow" d="M30 50 L40 50 L60 50 L70 50" />
+    </g>
+  </svg>
+);
+
+export const DatabaseIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <ellipse cx="50" cy="70" rx="22" ry="8" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
+    <path d="M28 70 V 60" stroke="#3E3E44" strokeWidth="0.5" />
+    <path d="M72 70 V 60" stroke="#3E3E44" strokeWidth="0.5" />
+    <ellipse cx="50" cy="60" rx="22" ry="8" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+    <path d="M28 60 V 50" stroke="#62666D" strokeWidth="0.5" />
+    <path d="M72 60 V 50" stroke="#62666D" strokeWidth="0.5" />
+    <ellipse cx="50" cy="50" rx="22" ry="8" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+    <path d="M28 50 V 35" stroke="#D0D6E0" strokeWidth="0.5" />
+    <path d="M72 50 V 35" stroke="#D0D6E0" strokeWidth="0.5" />
+    <ellipse cx="50" cy="35" rx="22" ry="8" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+    <path className="line-glow" d="M28 35 A 22 8 0 0 0 72 35" />
+  </svg>
+);
+
+export const VariableIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <g className="animate-float">
+      <path d="M25 35 Q 25 50 35 50 Q 25 50 25 65" stroke="#D0D6E0" strokeWidth="0.5" fill="none" />
+      <path d="M75 35 Q 75 50 65 50 Q 75 50 75 65" stroke="#D0D6E0" strokeWidth="0.5" fill="none" />
+      <path d="M25 35 L30 32.5" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M25 65 L30 67.5" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M75 35 L70 32.5" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M75 65 L70 67.5" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M40 42 L50 47 L60 42 L50 37 Z" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M40 42 V 52 L50 57 V 47" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M60 42 V 52 L50 57" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path className="line-glow" d="M40 42 L50 47 L60 42 L50 37 Z" />
+    </g>
+  </svg>
+);
+
+export const FunctionBlockIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <g className="animate-pop">
+      <path d="M25 40 L50 27.5 L75 40 L75 65 L50 77.5 L25 65 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M25 65 L50 52.5 L75 65" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M50 52.5 V 77.5" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M15 50 L25 50" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M75 50 L85 50" stroke="#62666D" strokeWidth="0.5" />
+      <circle cx="15" cy="50" r="2" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M85 48 L89 50 L85 52" stroke="#62666D" strokeWidth="0.5" fill="none" />
+      <text x="44" y="46" fill="#D0D6E0" fontSize="10" fontFamily="monospace" opacity="0.7">f(x)</text>
+      <path className="line-glow" d="M25 40 L50 27.5 L75 40" />
+    </g>
+  </svg>
+);
+
+export const ResponsiveIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <g className="animate-float">
+      <path d="M55 55 L75 45 L75 75 L55 85 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M55 55 L75 45" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M35 40 L60 28 L60 68 L35 80 Z" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M35 40 L60 28" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M15 25 L45 10 L45 65 L15 80 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M15 25 L45 10" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M20 35 L25 32.5" stroke="#62666D" strokeWidth="0.5" />
+      <path d="M20 40 L30 35" stroke="#62666D" strokeWidth="0.5" />
+      <path className="line-glow" d="M15 25 L45 10 L45 65 L15 80 Z" />
+    </g>
+  </svg>
+);
+
+export const PackageIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <path d="M25 40 L50 27.5 L75 40 L50 52.5 Z" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+    <path d="M25 40 V 65 L50 77.5 V 52.5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+    <path d="M75 40 V 65 L50 77.5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+    <path d="M37.5 33.75 L62.5 46.25" stroke="#3E3E44" strokeWidth="0.5" />
+    <path d="M50 52.5 V 77.5" stroke="#3E3E44" strokeWidth="0.5" />
+    <path d="M32 55 L42 60" stroke="#62666D" strokeWidth="0.5" />
+    <path d="M32 60 L38 63" stroke="#62666D" strokeWidth="0.5" />
+    <path className="line-glow" d="M25 40 L50 27.5 L75 40" />
+  </svg>
+);
+
+export const BooleanToggleIcon = (props) => (
+  <svg {...defaultProps} {...props}>
+    <g className="animate-float">
+      <path d="M20 45 L50 30 L80 45 L50 60 Z" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M20 45 V 55 L50 70 L80 55 V 45" fill="#08090A" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M50 60 V 70" stroke="#3E3E44" strokeWidth="0.5" />
+      <path d="M30 45 L50 35 L70 45 L50 55 Z" fill="#08090A" stroke="#62666D" strokeWidth="0.5" />
+      <ellipse cx="60" cy="42" rx="6" ry="3.5" fill="#08090A" stroke="#D0D6E0" strokeWidth="0.5" />
+      <path d="M38 48 L50 42" stroke="#62666D" strokeWidth="0.5" strokeDasharray="2 2" />
+      <path className="line-glow" d="M54 42 A 6 3.5 0 0 1 66 42" />
     </g>
   </svg>
 );
