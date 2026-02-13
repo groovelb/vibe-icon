@@ -22,8 +22,8 @@ const CardContainer = styled(Box)(({ theme }) => ({
 
 const IconWrapper = styled(Box)(({ theme }) => ({
   position: 'relative',
-  width: 96,
-  height: 96,
+  width: 128,
+  height: 128,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

@@ -86,6 +86,92 @@ function formatSvg(raw) {
   }).join('\n');
 }
 
+const CSS_DEFS = {
+  'animate-core': `@keyframes pulse-core {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); fill: #5E6AD2; }
+}
+.animate-core {
+  animation: pulse-core 3s infinite ease-in-out;
+  transform-origin: center;
+  transform-box: fill-box;
+}`,
+  'animate-float': `@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}`,
+  'animate-pop': `@keyframes pop-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-pop {
+  animation: pop-up 3s ease-in-out infinite;
+}`,
+  'animate-blink': `@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}`,
+  'animate-click': `@keyframes click-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+.animate-click {
+  animation: click-bounce 2s ease-in-out infinite;
+}`,
+  'line-glow': `@keyframes flow-glow {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+.line-glow {
+  stroke: #818CF8;
+  stroke-width: 0.8;
+  stroke-dasharray: 15 85;
+  stroke-linecap: round;
+  animation: flow-glow 2.5s linear infinite;
+  filter: drop-shadow(0 0 2px #6366f1);
+  opacity: 0.9;
+  fill: none;
+}`,
+  'line-glow-long': `@keyframes flow-glow {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+.line-glow-long {
+  stroke-dasharray: 20 180;
+  animation: flow-glow 4s linear infinite;
+}`,
+};
+
+function extractCss(svgHtml) {
+  const matches = svgHtml.matchAll(/class="([^"]+)"/g);
+  const classes = new Set();
+  for (const m of matches) m[1].split(/\s+/).forEach((c) => classes.add(c));
+  const rules = [...classes].map((c) => CSS_DEFS[c]).filter(Boolean);
+  if (!rules.length) return '/* No animation classes */';
+  return '/* Global styles — add to your stylesheet (e.g. index.css) */\n\n' + rules.join('\n\n');
+}
+
+const Tab = styled('button')(({ active }) => ({
+  background: 'none',
+  border: 'none',
+  padding: '6px 14px',
+  fontSize: '0.7rem',
+  fontWeight: 600,
+  fontFamily: '"SF Mono", "Fira Code", monospace',
+  letterSpacing: '0.05em',
+  cursor: 'pointer',
+  color: active ? '#818CF8' : '#64748B',
+  borderBottom: active ? '2px solid #818CF8' : '2px solid transparent',
+  transition: 'color 0.2s, border-color 0.2s',
+  '&:hover': { color: '#818CF8' },
+}));
+
 const CopyButton = styled(IconButton)({
   position: 'absolute',
   top: 8,
@@ -102,25 +188,34 @@ const CopyButton = styled(IconButton)({
 export default function IconSetPage() {
   const [selected, setSelected] = useState(null);
   const [svgCode, setSvgCode] = useState('');
+  const [cssCode, setCssCode] = useState('');
+  const [codeTab, setCodeTab] = useState('svg');
   const [copied, setCopied] = useState(false);
   const previewRef = useRef(null);
 
   useEffect(() => {
     if (!selected) {
       setSvgCode('');
+      setCssCode('');
       return;
     }
     const frame = requestAnimationFrame(() => {
       if (previewRef.current) {
         const svg = previewRef.current.querySelector('svg');
-        if (svg) setSvgCode(formatSvg(svg.outerHTML));
+        if (svg) {
+          const raw = svg.outerHTML;
+          setSvgCode(formatSvg(raw));
+          setCssCode(extractCss(raw));
+        }
       }
     });
     return () => cancelAnimationFrame(frame);
   }, [selected]);
 
+  const activeCode = codeTab === 'svg' ? svgCode : cssCode;
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(svgCode);
+    navigator.clipboard.writeText(activeCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -137,7 +232,7 @@ export default function IconSetPage() {
           </Typography>
         </Box>
 
-        <Grid container spacing={4} columns={30}>
+        <Grid container spacing={2} columns={30}>
           {iconData.map((item, index) => (
             <Grid key={index} size={{ xs: 15, md: 10, lg: 6 }}>
               <IconCard
@@ -158,34 +253,25 @@ export default function IconSetPage() {
         maxWidth="md"
         fullWidth
         slotProps={{
-          backdrop: { sx: { backdropFilter: 'blur(20px)', bgcolor: 'rgba(0,0,0,0.6)' } },
+          backdrop: { sx: { backdropFilter: 'blur(20px)', bgcolor: 'rgba(0,0,0,0.85)' } },
         }}
         PaperProps={{
           sx: {
-            bgcolor: 'rgba(16, 18, 22, 0.7)',
-            backdropFilter: 'blur(40px) saturate(1.4)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            bgcolor: 'rgba(8, 9, 10, 0.95)',
+            backdropFilter: 'blur(60px)',
+            WebkitBackdropFilter: 'blur(60px)',
+            border: '1px solid rgba(255,255,255,0.06)',
             borderRadius: 4,
             backgroundImage: 'none',
-            boxShadow: '0 32px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
           },
         }}
       >
         <DialogContent sx={{ p: 5 }}>
           {selected && (
             <>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  mb: 4,
-                  py: 3,
-                  borderRadius: 3,
-                  bgcolor: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(255,255,255,0.04)',
-                }}
-              >
-                <Box ref={previewRef} sx={{ width: 240, height: 240 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+                <Box ref={previewRef} sx={{ width: 320, height: 320 }}>
                   <selected.Icon />
                 </Box>
               </Box>
@@ -202,17 +288,15 @@ export default function IconSetPage() {
                 {selected.desc}
               </Typography>
               <Box sx={{ position: 'relative' }}>
-                <Typography
-                  variant="body2"
-                  sx={{ mb: 1, color: '#818CF8', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.05em' }}
-                >
-                  SVG CODE
-                </Typography>
+                <Box sx={{ display: 'flex', gap: 0.5, mb: 1.5, borderBottom: '1px solid rgba(255,255,255,0.06)', pb: 0.5 }}>
+                  <Tab active={codeTab === 'svg' ? 1 : 0} onClick={() => setCodeTab('svg')}>SVG</Tab>
+                  <Tab active={codeTab === 'css' ? 1 : 0} onClick={() => setCodeTab('css')}>CSS</Tab>
+                </Box>
                 <Box
                   component="pre"
                   sx={{
-                    bgcolor: 'rgba(8, 9, 10, 0.6)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    bgcolor: 'rgba(0, 0, 0, 0.3)',
+                    border: '1px solid rgba(255,255,255,0.08)',
                     borderRadius: 2,
                     p: 2.5,
                     pr: 7,
@@ -225,9 +309,12 @@ export default function IconSetPage() {
                     m: 0,
                     whiteSpace: 'pre-wrap',
                     wordBreak: 'break-all',
+                    '&::-webkit-scrollbar': { width: 4 },
+                    '&::-webkit-scrollbar-track': { background: 'transparent' },
+                    '&::-webkit-scrollbar-thumb': { background: 'rgba(255,255,255,0.1)', borderRadius: 2 },
                   }}
                 >
-                  {svgCode}
+                  {activeCode}
                 </Box>
                 <CopyButton onClick={handleCopy} disableRipple>
                   {copied ? 'Copied!' : 'Copy'}

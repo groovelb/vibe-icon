@@ -228,23 +228,19 @@ export const FigmaToolIcon = (props) => (
       <path id="f-teardrop" d="M50 0 L100 0 L100 50 A 50 50 0 1 1 50 0 Z" />
     </defs>
     <g transform="translate(50, 40) scale(0.14)">
-      {/* Bottom face */}
-      <g transform="translate(0, 40) matrix(0.866, 0.5, -0.866, 0.5, 0, 0)">
-        <use href="#f-left-round" x="-100" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-right-round" x="0" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-left-round" x="-100" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-circle" x="0" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-teardrop" x="-100" y="50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+      <g transform="translate(0, 20) matrix(0.866, 0.5, -0.866, 0.5, 0, 0)" opacity="0.5">
+        <use href="#f-left-round" x="-100" y="-150" stroke="#3E3E44" strokeWidth="4" fill="#08090A" />
+        <use href="#f-right-round" x="0" y="-150" stroke="#3E3E44" strokeWidth="4" fill="#08090A" />
+        <use href="#f-left-round" x="-100" y="-50" stroke="#3E3E44" strokeWidth="4" fill="#08090A" />
+        <use href="#f-circle" x="0" y="-50" stroke="#3E3E44" strokeWidth="4" fill="#08090A" />
+        <use href="#f-teardrop" x="-100" y="50" stroke="#3E3E44" strokeWidth="4" fill="#08090A" />
       </g>
-      {/* Vertical edges connecting top and bottom faces */}
-      <path d="M 86.6 -100 L 52 -80 M 129.9 -75 L 95.3 -55 M 0 -50 L -34.6 -30 M 43.3 -25 L 8.7 -5 M -86.6 0 L -121.2 20 M -43.3 25 L -77.9 45 M -86.6 50 L -121.2 70" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-      {/* Top face */}
       <g transform="matrix(0.866, 0.5, -0.866, 0.5, 0, 0)">
-        <use href="#f-left-round" x="-100" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-right-round" x="0" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-left-round" x="-100" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-circle" x="0" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
-        <use href="#f-teardrop" x="-100" y="50" stroke="#D0D6E0" strokeWidth="4" fill="none" />
+        <use href="#f-left-round" x="-100" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="#08090A" />
+        <use href="#f-right-round" x="0" y="-150" stroke="#D0D6E0" strokeWidth="4" fill="#08090A" />
+        <use href="#f-left-round" x="-100" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="#08090A" />
+        <use href="#f-circle" x="0" y="-50" stroke="#D0D6E0" strokeWidth="4" fill="#08090A" />
+        <use href="#f-teardrop" x="-100" y="50" stroke="#D0D6E0" strokeWidth="4" fill="#08090A" />
       </g>
     </g>
     <path className="line-glow" d="M 62 26 A 8.6 5 0 0 0 50 33 A 8.6 5 0 0 0 38 40" />
